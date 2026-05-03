@@ -6,6 +6,7 @@ import { Linking } from 'react-native';
 import 'react-native-reanimated';
 
 import { AuthProvider, useAuth } from '@/src/core/auth';
+import { ComposerDraftProvider } from '@/src/core/composer';
 import { InnerCircleProvider } from '@/src/core/innerCircle';
 import { parseAppDeepLink, queueDeepLink } from '@/src/core/shell';
 import { ThemeProvider } from '@/src/core/theme';
@@ -71,16 +72,18 @@ export default function RootLayout() {
     <ThemeProvider mode="dark">
       <AuthProvider>
         <InnerCircleProvider>
-          <NavigationThemeProvider value={DarkTheme}>
-            <AuthGate />
-            <DeepLinkHandler />
-            <Stack>
-              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-              <Stack.Screen name="onboarding" options={{ headerShown: false }} />
-              <Stack.Screen name="activity/[id]" options={{ headerShown: false }} />
-            </Stack>
-            <StatusBar style="light" />
-          </NavigationThemeProvider>
+          <ComposerDraftProvider>
+            <NavigationThemeProvider value={DarkTheme}>
+              <AuthGate />
+              <DeepLinkHandler />
+              <Stack>
+                <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+                <Stack.Screen name="onboarding" options={{ headerShown: false }} />
+                <Stack.Screen name="activity/[id]" options={{ headerShown: false }} />
+              </Stack>
+              <StatusBar style="light" />
+            </NavigationThemeProvider>
+          </ComposerDraftProvider>
         </InnerCircleProvider>
       </AuthProvider>
     </ThemeProvider>
