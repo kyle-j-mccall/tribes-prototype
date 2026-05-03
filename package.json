@@ -17,7 +17,8 @@
     "typecheck": "tsc --noEmit",
     "lint:antipatterns": "node scripts/lint-antipatterns.js",
     "test:antipatterns": "node scripts/lint-antipatterns.test.js",
-    "check": "npm run typecheck && npm run lint && npm run lint:copy:seed && npm run lint:antipatterns && npm run format:check",
+    "lint:contrast": "node ./scripts/check-contrast.js",
+    "check": "npm run typecheck && npm run lint && npm run lint:copy:seed && npm run lint:antipatterns && npm run lint:contrast && npm run format:check",
     "prepare": "husky"
   },
   "lint-staged": {
