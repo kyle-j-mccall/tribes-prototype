@@ -5,3 +5,8 @@ ios
 android
 *.lock
 package-lock.json
+# Frozen V1 design tokens — hand-authored alignment / hex casing is intentional.
+style-guide/tokens.css
+# Agent-local scratch (untracked).
+.claude
+CLAUDE.local.md
