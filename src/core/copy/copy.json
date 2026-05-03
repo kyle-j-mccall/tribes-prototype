@@ -62,5 +62,17 @@
   "profile.remove-confirm.cancel": {
     "warm": "Keep them",
     "executive": "Cancel"
+  },
+  "profile.section.settings": {
+    "warm": "Settings",
+    "executive": "Settings"
+  },
+  "profile.settings.attendance-feedback.label": {
+    "warm": "Ask who actually came",
+    "executive": "Attendance feedback"
+  },
+  "profile.settings.attendance-feedback.body": {
+    "warm": "After a plan, we'll quietly ask who showed up so the rhythm gets sharper.",
+    "executive": "Post-event check on who attended. Off by default."
   }
 }
