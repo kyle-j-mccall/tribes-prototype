@@ -10,6 +10,12 @@ export interface Storage {
   getItem(key: string): Promise<string | null>;
   setItem(key: string, value: string): Promise<void>;
   removeItem(key: string): Promise<void>;
+  /**
+   * Wipe every key. Used by account deletion (Story 5.8) so any future
+   * persisted state is purged automatically without each module having to
+   * publish its key list.
+   */
+  clear(): Promise<void>;
 }
 
 function createMemoryStorage(): Storage {
@@ -24,6 +30,10 @@ function createMemoryStorage(): Storage {
     },
     removeItem(key) {
       map.delete(key);
+      return Promise.resolve();
+    },
+    clear() {
+      map.clear();
       return Promise.resolve();
     },
   };

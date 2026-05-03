@@ -1,12 +1,17 @@
-// Profile tab — inner-circle CRUD (Story 5.5).
+// Profile tab — inner-circle CRUD (Story 5.5) + Account section (Story 5.8).
 //
 // Two-step removal: tap card → reveals Remove button → triggers Foundation
 // confirmation dialog. Manual-add opens the iOS contacts picker via the
 // ContactPicker abstraction in src/core/innerCircle/contactPicker.ts.
+//
+// Account section sits at the bottom of the tab per Shell §4 layout
+// (Inner circle → Settings → Account). Settings (5.6) and permission
+// rows (5.7) will land between the inner-circle list and AccountSection.
 
 import { ScrollView, StyleSheet, View } from 'react-native';
 
 import { Pressable, Text } from '@/src/core/a11y';
+import { AccountSection } from '@/src/core/account';
 import { copy } from '@/src/core/copy/copy';
 import { currentRegister } from '@/src/core/copy/registerSignals';
 import { ConfirmationDialog } from '@/src/core/dialog';
@@ -92,6 +97,7 @@ export default function ProfileScreen() {
         >
           <Text style={styles.addButtonLabel}>{copy('profile.add-button', { register })}</Text>
         </Pressable>
+        <AccountSection />
       </ScrollView>
       <ConfirmationDialog
         isOpen={confirmation.isOpen}
