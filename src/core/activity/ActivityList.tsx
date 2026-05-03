@@ -1,13 +1,19 @@
 // ActivityList — sectioned list of sent (top) and received (bottom)
-// coordinations with pull-to-refresh.
+// coordinations with pull-to-refresh, falling back to the Foundation
+// EmptyState when both lists are empty.
 //
 // SectionList's section ordering is the source of truth for "Sent above
-// Received" (T-SHELL-ACT-001). Empty sections are dropped so the section
-// header doesn't render alone — the empty state itself ships in 5.3.
+// Received" (T-SHELL-ACT-001). When both arrays are empty (5.3) we
+// render <EmptyState> with register-flexed copy and a Compose CTA that
+// routes to the Send tab.
 
-import { RefreshControl, SectionList, StyleSheet, View } from 'react-native';
+import { useRouter } from 'expo-router';
+import { RefreshControl, ScrollView, SectionList, StyleSheet, View } from 'react-native';
 
 import { Text } from '../a11y';
+import { copy } from '../copy/copy';
+import { currentRegister } from '../copy/registerSignals';
+import { EmptyState } from '../state';
 import { colors, space, text as textTokens } from '../theme/tokens';
 import { ReceivedRow } from './ReceivedRow';
 import { SentRow } from './SentRow';
@@ -20,7 +26,41 @@ interface Section {
 }
 
 export function ActivityList() {
+  const router = useRouter();
   const { sent, received, isRefreshing, refetch } = useActivity();
+  const isEmpty = sent.length === 0 && received.length === 0;
+
+  // Register defaults to warm until UserStats lands.
+  const register = currentRegister({});
+
+  if (isEmpty) {
+    return (
+      <ScrollView
+        style={styles.emptyScroll}
+        contentContainerStyle={styles.emptyContent}
+        refreshControl={
+          <RefreshControl
+            refreshing={isRefreshing}
+            onRefresh={() => {
+              void refetch();
+            }}
+            tintColor={colors.primary.default}
+          />
+        }
+      >
+        <EmptyState
+          illustration="paper-boat"
+          title={copy('activity.empty.title', { register })}
+          body=""
+          cta={{
+            label: copy('activity.empty.cta', { register }),
+            onPress: () => router.navigate({ pathname: '/(tabs)' }),
+          }}
+        />
+      </ScrollView>
+    );
+  }
+
   const sections: Section[] = [];
   if (sent.length) sections.push({ title: 'Sent', data: sent });
   if (received.length) sections.push({ title: 'Received', data: received });
@@ -73,5 +113,11 @@ const styles = StyleSheet.create({
     height: StyleSheet.hairlineWidth,
     backgroundColor: colors.border.subtle,
     marginLeft: space.md + 44 + space.md,
+  },
+  emptyScroll: {
+    flex: 1,
+  },
+  emptyContent: {
+    flexGrow: 1,
   },
 });

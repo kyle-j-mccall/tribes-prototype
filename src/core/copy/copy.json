@@ -19,6 +19,14 @@
     "warm": "Profile",
     "executive": "Profile"
   },
+  "activity.empty.title": {
+    "warm": "Your activity will live here. Compose your first send to start.",
+    "executive": "Composer's a tap away."
+  },
+  "activity.empty.cta": {
+    "warm": "Compose",
+    "executive": "Compose"
+  },
   "profile.section.inner-circle": {
     "warm": "Your inner circle",
     "executive": "Inner circle"
