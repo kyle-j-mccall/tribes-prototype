@@ -18,5 +18,41 @@
   "nav.tab.profile": {
     "warm": "Profile",
     "executive": "Profile"
+  },
+  "profile.section.inner-circle": {
+    "warm": "Your inner circle",
+    "executive": "Inner circle"
+  },
+  "profile.empty.title": {
+    "warm": "Your circle is open and waiting",
+    "executive": "Inner circle is empty"
+  },
+  "profile.empty.body": {
+    "warm": "Add the people you'd want to bring along.",
+    "executive": "Add people to invite."
+  },
+  "profile.add-button": {
+    "warm": "Add or change someone",
+    "executive": "Add or change"
+  },
+  "profile.card.remove-action": {
+    "warm": "Remove",
+    "executive": "Remove"
+  },
+  "profile.remove-confirm.title": {
+    "warm": "Take {name} out of your circle?",
+    "executive": "Remove {name}?"
+  },
+  "profile.remove-confirm.body": {
+    "warm": "They won't see plans you send to your circle.",
+    "executive": "Hides them from circle sends."
+  },
+  "profile.remove-confirm.confirm": {
+    "warm": "Remove",
+    "executive": "Remove"
+  },
+  "profile.remove-confirm.cancel": {
+    "warm": "Keep them",
+    "executive": "Cancel"
   }
 }

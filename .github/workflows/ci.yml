@@ -18,3 +18,4 @@ jobs:
       - run: npm run check
       - run: npm run test:antipatterns
       - run: npm run test:telemetry
+      - run: npm run test:inner-circle

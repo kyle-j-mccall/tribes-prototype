@@ -19,7 +19,8 @@
     "test:antipatterns": "node scripts/lint-antipatterns.test.js",
     "lint:contrast": "node ./scripts/check-contrast.js",
     "test:telemetry": "node scripts/test-telemetry.js",
-    "check": "npm run typecheck && npm run lint && npm run lint:copy:seed && npm run lint:antipatterns && npm run lint:contrast && npm run test:telemetry && npm run format:check",
+    "test:inner-circle": "node scripts/test-inner-circle.js",
+    "check": "npm run typecheck && npm run lint && npm run lint:copy:seed && npm run lint:antipatterns && npm run lint:contrast && npm run test:telemetry && npm run test:inner-circle && npm run format:check",
     "prepare": "husky"
   },
   "lint-staged": {
@@ -38,6 +39,7 @@
     "@react-navigation/native": "^7.1.8",
     "expo": "~54.0.33",
     "expo-constants": "~18.0.13",
+    "expo-contacts": "~15.0.11",
     "expo-font": "~14.0.11",
     "expo-haptics": "~15.0.8",
     "expo-image": "~3.0.11",
