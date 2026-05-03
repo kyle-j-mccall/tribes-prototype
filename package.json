@@ -10,12 +10,14 @@
     "web": "expo start --web",
     "lint": "expo lint",
     "lint:fix": "expo lint -- --fix",
+    "lint:copy": "node ./scripts/check-copy-registry.js",
+    "lint:copy:seed": "node ./scripts/check-copy-registry.js --seed",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "typecheck": "tsc --noEmit",
     "lint:antipatterns": "node scripts/lint-antipatterns.js",
     "test:antipatterns": "node scripts/lint-antipatterns.test.js",
-    "check": "npm run typecheck && npm run lint && npm run format:check && npm run lint:antipatterns",
+    "check": "npm run typecheck && npm run lint && npm run lint:copy:seed && npm run lint:antipatterns && npm run format:check",
     "prepare": "husky"
   },
   "lint-staged": {

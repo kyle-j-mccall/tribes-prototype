@@ -1,0 +1,10 @@
+{
+  "post-send.confirmation": {
+    "warm": "Sent. Now we wait, gently.",
+    "executive": "Sent in {seconds}s."
+  },
+  "composer.send-button": {
+    "warm": "Send it",
+    "executive": "Send"
+  }
+}
