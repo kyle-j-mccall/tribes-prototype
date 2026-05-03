@@ -4,6 +4,7 @@ const expoConfig = require('eslint-config-expo/flat');
 const tseslint = require('typescript-eslint');
 const pluginQuery = require('@tanstack/eslint-plugin-query');
 const prettierConfig = require('eslint-config-prettier/flat');
+const a11yPlugin = require('./scripts/eslint-plugin-tribes-a11y');
 
 module.exports = defineConfig([
   expoConfig,
@@ -15,6 +16,9 @@ module.exports = defineConfig([
         projectService: true,
         tsconfigRootDir: __dirname,
       },
+    },
+    plugins: {
+      'tribes-a11y': a11yPlugin,
     },
     rules: {
       // RN's surface (require() for assets, untyped 3rd-party APIs) makes the
@@ -29,6 +33,7 @@ module.exports = defineConfig([
       // - no-floating-promises (forgotten awaits)
       // - no-misused-promises (async fn passed where void expected)
       // - require-await, await-thenable, etc. (typescript-eslint defaults)
+      'tribes-a11y/min-touch-target': 'error',
     },
   },
   {
