@@ -1,0 +1,149 @@
+/* Tribes V1 — design tokens as CSS variables.
+   Drop into your app at the :root level; reference everything by var() name.
+   All semantic — never hard-code hex values downstream. */
+
+:root {
+  /* ─── color · primary (Sunset Coral) ─── */
+  --color-coral:        #E86A58;
+  --color-coral-dark:   #C4463A;
+  --color-coral-light:  #FFB4A8;
+
+  /* ─── color · secondary (Ocean Teal) ─── */
+  --color-teal:         #2A9D8F;
+  --color-teal-dark:    #1E7268;
+  --color-teal-light:   #A8E6CF;
+
+  /* ─── color · neutrals (Deep Night, dark-mode primary) ─── */
+  --color-bg:           #121212;
+  --color-surface:      #1E1E1E;
+  --color-surface-2:    #2A2A2A;
+  --color-text:         #FAF8F5;   /* warm white — NOT pure white */
+  --color-text-2:       #B0B0B0;
+  --color-text-3:       #6B6B6B;
+  --color-divider:      #333333;
+
+  /* ─── color · semantic aliases ─── */
+  --color-action:       var(--color-coral);       /* user's outbound action */
+  --color-success:      var(--color-teal);        /* inbound positive signal */
+  --color-success-soft: var(--color-teal-light);
+
+  /* ─── typography ─── */
+  --font-display:  "Inter", "SF Pro Display", -apple-system, system-ui, sans-serif;
+  --font-body:     "Inter", "SF Pro Text", -apple-system, system-ui, sans-serif;
+  --font-soul:     "Inter", -apple-system, system-ui, sans-serif;
+  --font-brand:    "Caveat", cursive;            /* wordmark ONLY */
+
+  --size-display:  32px;
+  --size-headline: 24px;
+  --size-title:    18px;
+  --size-body:     16px;
+  --size-caption:  14px;
+  --size-label:    12px;
+  --size-soul:     22px;
+  --size-wordmark: 84px;
+
+  --weight-light:    300;
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+
+  /* ─── spacing (8pt base) ─── */
+  --space-xs:  4px;
+  --space-sm:  8px;
+  --space-md:  16px;
+  --space-lg:  24px;
+  --space-xl:  32px;
+  --space-2xl: 48px;
+
+  /* ─── radius ─── */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   16px;
+  --radius-full: 9999px;
+
+  /* ─── elevation ─── */
+  --elev-1: 0 1px 3px rgba(0,0,0,0.30);
+  --elev-2: 0 4px 12px rgba(0,0,0,0.35);
+  --elev-3: 0 8px 24px rgba(0,0,0,0.40);
+  --elev-glow:
+    0 0 0 1px color-mix(in oklab, var(--color-coral) 40%, transparent),
+    0 8px 28px color-mix(in oklab, var(--color-coral) 35%, transparent),
+    0 2px 6px rgba(0,0,0,0.3);
+
+  /* ─── motion ─── */
+  --motion-fast: 120ms;
+  --motion-base: 200ms;
+  --motion-slow: 400ms;
+  --motion-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /* ─── interactive ─── */
+  --touch-target-min: 44px;
+
+  /* ─── canvas glow (warm-register screens) ─── */
+  --canvas-warm-glow: radial-gradient(
+    ellipse 120% 80% at 50% -10%,
+    color-mix(in oklab, var(--color-coral-light) 18%, transparent) 0%,
+    transparent 60%
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-fast: 0ms;
+    --motion-base: 0ms;
+    --motion-slow: 0ms;
+  }
+}
+
+/* ─── base resets that any Tribes surface assumes ─── */
+.tribes-app {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--size-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── component utility classes (optional — direct alternatives to the JSX recipes) ─── */
+.tribes-button-primary {
+  height: 56px;
+  padding: 0 28px;
+  border-radius: var(--radius-lg);
+  background: var(--color-coral);
+  color: #fff;
+  border: none;
+  font-family: var(--font-body);
+  font-size: 17px;
+  font-weight: var(--weight-semibold);
+  box-shadow: var(--elev-glow);
+  cursor: pointer;
+  transition: transform var(--motion-fast) var(--motion-ease);
+}
+.tribes-button-primary:active { transform: scale(0.98); }
+
+.tribes-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  box-shadow: var(--elev-1);
+}
+
+.tribes-label {
+  font-size: var(--size-label);
+  font-weight: var(--weight-medium);
+  color: var(--color-text-3);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.tribes-soul-line {
+  font-family: var(--font-soul);
+  font-size: var(--size-soul);
+  font-weight: var(--weight-light);
+  line-height: 1.4;
+  letter-spacing: -0.005em;
+  text-wrap: balance;
+  color: var(--color-text);
+  text-align: center;
+}
