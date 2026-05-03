@@ -17,6 +17,7 @@ import { copy } from '@/src/core/copy/copy';
 import { currentRegister } from '@/src/core/copy/registerSignals';
 import { ConfirmationDialog } from '@/src/core/dialog';
 import { useInnerCircle } from '@/src/core/innerCircle';
+import { PermissionsSection } from '@/src/core/permissions';
 import { SettingsSection } from '@/src/core/settings';
 import { EmptyState } from '@/src/core/state';
 import { colors, radius, space, text as textTokens } from '@/src/core/theme/tokens';
@@ -100,6 +101,7 @@ export default function ProfileScreen() {
           <Text style={styles.addButtonLabel}>{copy('profile.add-button', { register })}</Text>
         </Pressable>
         <SettingsSection />
+        <PermissionsSection />
         <AccountSection />
       </ScrollView>
       <ConfirmationDialog

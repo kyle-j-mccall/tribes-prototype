@@ -74,5 +74,29 @@
   "profile.settings.attendance-feedback.body": {
     "warm": "After a plan, we'll quietly ask who showed up so the rhythm gets sharper.",
     "executive": "Post-event check on who attended. Off by default."
+  },
+  "profile.permissions.section": {
+    "warm": "Permissions",
+    "executive": "Permissions"
+  },
+  "profile.permissions.microphone": {
+    "warm": "Microphone",
+    "executive": "Microphone"
+  },
+  "profile.permissions.contacts": {
+    "warm": "Contacts",
+    "executive": "Contacts"
+  },
+  "profile.permissions.status.granted": {
+    "warm": "Allowed",
+    "executive": "Allowed"
+  },
+  "profile.permissions.status.denied": {
+    "warm": "Blocked — open Settings",
+    "executive": "Blocked — open Settings"
+  },
+  "profile.permissions.status.undetermined": {
+    "warm": "Not asked yet",
+    "executive": "Pending"
   }
 }
