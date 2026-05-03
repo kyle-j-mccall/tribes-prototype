@@ -1,18 +1,17 @@
-// Activity tab — header + push-permission banner + compose FAB.
+// Activity tab — header, push-permission banner, sent/received list,
+// and compose FAB.
 //
-// List content comes in 5.2; empty state in 5.3. This file owns the
-// header (44pt min, text.title) and hosts the PushBanner. The banner is
-// dismiss-sticky and only renders in the Activity tab per Shell §5.
-//
-// The ComposeFAB is mounted here (and ONLY here) per Shell §3 / FR19 —
-// visibility is structural, not flag-driven. Send and Profile naturally
-// don't see it because they don't render it.
+// Empty state ships in 5.3. The header and PushBanner are 5.1 substrate;
+// the list comes from 5.2 (ActivityList); the FAB is mounted here (and
+// ONLY here) per Shell §3 / FR19 — visibility is structural, not
+// flag-driven. List items deep-link to /activity/[id] (5.1 route).
 
 import { useRouter } from 'expo-router';
 import { useCallback } from 'react';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
 
 import { Text } from '@/src/core/a11y';
+import { ActivityList } from '@/src/core/activity';
 import { ComposeFAB, PushBanner, getLastUsedAudience } from '@/src/core/shell';
 import { colors, space, text as textTokens } from '@/src/core/theme/tokens';
 
@@ -38,9 +37,7 @@ export default function ActivityScreen() {
         <Text style={styles.title}>Activity</Text>
       </View>
       <PushBanner />
-      <View style={styles.placeholder}>
-        <Text style={styles.placeholderText}>List · slice 5.2 lands here</Text>
-      </View>
+      <ActivityList />
       <ComposeFAB onPress={onComposePress} />
     </SafeAreaView>
   );
@@ -59,14 +56,5 @@ const styles = StyleSheet.create({
   title: {
     ...textTokens.title,
     color: colors.text.primary,
-  },
-  placeholder: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  placeholderText: {
-    ...textTokens.body,
-    color: colors.text.secondary,
   },
 });
